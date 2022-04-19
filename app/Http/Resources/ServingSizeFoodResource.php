@@ -22,15 +22,25 @@ class ServingSizeFoodResource extends JsonResource
                             ->first()
                             ->name;
 
-        $calories = Serving_size_food
+        $nutrition_facts = Serving_size_food
                                     ::where([['serving_size_id',  $this->serving_size_id], ['food_id',  $this->food_id]])
-                                    ->get('calories')
                                     ->first()
-                                    ->calories;
+                                    ;
         return [
             'id' => $this->id,
             'serving_size' => $name_serving_size,
-            'calories' => $calories
+            'calories' => $nutrition_facts->calories,
+            'fat' => $nutrition_facts->fat,
+            'cholesterol' => $nutrition_facts->cholesterol,
+            'sodium' => $nutrition_facts->sodium,
+            'carbs' => $nutrition_facts->carbs,
+            'protein' => $nutrition_facts->protein,
+            'calcium' => $nutrition_facts->calcium,
+            'iron' => $nutrition_facts->iron,  
+            'potassium' => $nutrition_facts->potassium, 
+            'vitamin_D' => $nutrition_facts->vitamin_D, 
+            'vitamin_A' => $nutrition_facts->vitamin_A, 
+            'vitamin_C' => $nutrition_facts->vitamin_C, 
         ];
     }
 }

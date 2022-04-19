@@ -32,8 +32,8 @@ class FoodController extends Controller
         return ResponseHelper::send(new FoodResource($food)); 
     }
 
-    public function search(StoreFoodRequest $request)
+    public function search($name)
     {
-        return ResponseHelper::send(FoodResource::collection(Food::where('name', 'LIKE', '%'.$request['name'].'%')->get())); 
+        return ResponseHelper::send(FoodResource::collection(Food::where('name', 'LIKE', '%'.$name.'%')->get())); 
     }
 }
