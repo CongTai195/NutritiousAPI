@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,10 +16,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-        $this->call(FoodSeeder::class);
-        $this->call(ServingSizeSeeder::class);
-        $this->call(ServingSizeFoodSeeder::class);
+        //\App\Models\User::factory(10)->create();
+        $this->call(UserSeeder::class);
+        //$this->call(FoodSeeder::class);
+        //$this->call(ServingSizeSeeder::class);
+        //$this->call(ServingSizeFoodSeeder::class);
+    }
+}
+
+class UserSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('users')->insert([
+            //['name' => 'Brad', 'email' => 'braddinh@gmail.com', 'password' => Hash::make('123')],
+            ['name' => 'Cody', 'email' => 'codyle@gmail.com', 'password' => Hash::make('123')],
+            ['name' => 'Gage', 'email' => 'gagepham@gmail.com', 'password' => Hash::make('123')],
+        ]);
     }
 }
 
@@ -60,24 +74,24 @@ class ServingSizeFoodSeeder extends Seeder
     {
         DB::table('serving_size_foods')->insert([
             ['serving_size_id' => 2, 'food_id' => 1, 'calories' => 170, 'fat' => 8, 'cholesterol' => 70, 'sodium' => 75, 'carbs' => 0, 'protein' => 23, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 15, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
-            ['serving_size_id' => 1, 'food_id' => 1, 'calories' => 43 , 'fat' => 2, 'cholesterol' => 17.7, 'sodium' => 19, 'carbs' => 0, 'protein' => 5.8, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 3.8, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
-            ['serving_size_id' => 3, 'food_id' => 1, 'calories' => 2 , 'fat' => 0.1, 'cholesterol' => 0.6, 'sodium' => 0.7, 'carbs' => 0, 'protein' => 0.2, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 0.1, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
-            ['serving_size_id' => 4, 'food_id' => 1, 'calories' => 688 , 'fat' => 32.4, 'cholesterol' => 283.5, 'sodium' => 303.7, 'carbs' => 0, 'protein' => 93.1, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 60.7, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
-            ['serving_size_id' => 5, 'food_id' => 1, 'calories' => 1518 , 'fat' => 71.4, 'cholesterol' => 625, 'sodium' => 669.6, 'carbs' => 0, 'protein' => 205.4, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 133.9, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
+            ['serving_size_id' => 1, 'food_id' => 1, 'calories' => 43, 'fat' => 2, 'cholesterol' => 17.7, 'sodium' => 19, 'carbs' => 0, 'protein' => 5.8, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 3.8, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
+            ['serving_size_id' => 3, 'food_id' => 1, 'calories' => 2, 'fat' => 0.1, 'cholesterol' => 0.6, 'sodium' => 0.7, 'carbs' => 0, 'protein' => 0.2, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 0.1, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
+            ['serving_size_id' => 4, 'food_id' => 1, 'calories' => 688, 'fat' => 32.4, 'cholesterol' => 283.5, 'sodium' => 303.7, 'carbs' => 0, 'protein' => 93.1, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 60.7, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
+            ['serving_size_id' => 5, 'food_id' => 1, 'calories' => 1518, 'fat' => 71.4, 'cholesterol' => 625, 'sodium' => 669.6, 'carbs' => 0, 'protein' => 205.4, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 133.9, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
             //['serving_size_id' => 10, 'food_id' => 1, 'calories' => 200],
 
 
             ['serving_size_id' => 2, 'food_id' => 2, 'calories' => 100, 'fat' => 2, 'cholesterol' => 50, 'sodium' => 110, 'carbs' => 1, 'protein' => 22, 'vitamin_D' => 0, 'calcium' => 2, 'iron' => 4, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 2],
-            ['serving_size_id' => 1, 'food_id' => 2, 'calories' => 25 , 'fat' => 0.5, 'cholesterol' => 12.5, 'sodium' => 27.5, 'carbs' => 0.2, 'protein' => 5.5, 'vitamin_D' => 0, 'calcium' => 0.5, 'iron' => 1, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0.5],
-            ['serving_size_id' => 3, 'food_id' => 2, 'calories' => 1 , 'fat' => 0, 'cholesterol' => 0.4, 'sodium' => 1, 'carbs' => 0, 'protein' => 0.2, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 0, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
+            ['serving_size_id' => 1, 'food_id' => 2, 'calories' => 25, 'fat' => 0.5, 'cholesterol' => 12.5, 'sodium' => 27.5, 'carbs' => 0.2, 'protein' => 5.5, 'vitamin_D' => 0, 'calcium' => 0.5, 'iron' => 1, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0.5],
+            ['serving_size_id' => 3, 'food_id' => 2, 'calories' => 1, 'fat' => 0, 'cholesterol' => 0.4, 'sodium' => 1, 'carbs' => 0, 'protein' => 0.2, 'vitamin_D' => 0, 'calcium' => 0, 'iron' => 0, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 0],
             ['serving_size_id' => 4, 'food_id' => 2, 'calories' => 400, 'fat' => 8, 'cholesterol' => 200, 'sodium' => 440, 'carbs' => 4, 'protein' => 88, 'vitamin_D' => 0, 'calcium' => 8, 'iron' => 16, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 8],
-            ['serving_size_id' => 5, 'food_id' => 2, 'calories' => 882 , 'fat' => 17.6, 'cholesterol' => 440.9, 'sodium' => 970, 'carbs' => 8.8, 'protein' => 194, 'vitamin_D' => 0, 'calcium' => 17.6, 'iron' => 35.3, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 17.6],
+            ['serving_size_id' => 5, 'food_id' => 2, 'calories' => 882, 'fat' => 17.6, 'cholesterol' => 440.9, 'sodium' => 970, 'carbs' => 8.8, 'protein' => 194, 'vitamin_D' => 0, 'calcium' => 17.6, 'iron' => 35.3, 'potassium' => 0, 'vitamin_A' => 0, 'vitamin_C' => 17.6],
             //['serving_size_id' => 10, 'food_id' => 2, 'calories' => 100],
 
-            ['serving_size_id' => 6, 'food_id' => 3, 'calories' => 72 , 'fat' => 4.8, 'cholesterol' => 186, 'sodium' => 71, 'carbs' => 0.4, 'protein' => 6.3, 'vitamin_D' => 0, 'calcium' => 28, 'iron' => 0.9, 'potassium' => 69, 'vitamin_A' => 80, 'vitamin_C' => 0],
-            ['serving_size_id' => 7, 'food_id' => 3, 'calories' => 63 , 'fat' => 4.2, 'cholesterol' => 163.7, 'sodium' => 62.5, 'carbs' => 0.3, 'protein' => 5.5, 'vitamin_D' => 0, 'calcium' => 24.6, 'iron' => 0.8, 'potassium' => 60.7, 'vitamin_A' => 70.4, 'vitamin_C' => 0],
-            ['serving_size_id' => 8, 'food_id' => 3, 'calories' => 80 , 'fat' => 5.3, 'cholesterol' => 208.3, 'sodium' => 79.5, 'carbs' => 0.4, 'protein' => 7, 'vitamin_D' => 0, 'calcium' => 31.4, 'iron' => 1, 'potassium' => 77.3, 'vitamin_A' => 89.6, 'vitamin_C' => 0],
-            ['serving_size_id' => 9, 'food_id' => 3, 'calories' => 54 , 'fat' => 3.6, 'cholesterol' => 141.4, 'sodium' => 54, 'carbs' => 0.3, 'protein' => 4.8, 'vitamin_D' => 0, 'calcium' => 21.3, 'iron' => 0.7, 'potassium' => 52.4, 'vitamin_A' => 60.8, 'vitamin_C' => 0],
+            ['serving_size_id' => 6, 'food_id' => 3, 'calories' => 72, 'fat' => 4.8, 'cholesterol' => 186, 'sodium' => 71, 'carbs' => 0.4, 'protein' => 6.3, 'vitamin_D' => 0, 'calcium' => 28, 'iron' => 0.9, 'potassium' => 69, 'vitamin_A' => 80, 'vitamin_C' => 0],
+            ['serving_size_id' => 7, 'food_id' => 3, 'calories' => 63, 'fat' => 4.2, 'cholesterol' => 163.7, 'sodium' => 62.5, 'carbs' => 0.3, 'protein' => 5.5, 'vitamin_D' => 0, 'calcium' => 24.6, 'iron' => 0.8, 'potassium' => 60.7, 'vitamin_A' => 70.4, 'vitamin_C' => 0],
+            ['serving_size_id' => 8, 'food_id' => 3, 'calories' => 80, 'fat' => 5.3, 'cholesterol' => 208.3, 'sodium' => 79.5, 'carbs' => 0.4, 'protein' => 7, 'vitamin_D' => 0, 'calcium' => 31.4, 'iron' => 1, 'potassium' => 77.3, 'vitamin_A' => 89.6, 'vitamin_C' => 0],
+            ['serving_size_id' => 9, 'food_id' => 3, 'calories' => 54, 'fat' => 3.6, 'cholesterol' => 141.4, 'sodium' => 54, 'carbs' => 0.3, 'protein' => 4.8, 'vitamin_D' => 0, 'calcium' => 21.3, 'iron' => 0.7, 'potassium' => 52.4, 'vitamin_A' => 60.8, 'vitamin_C' => 0],
             // ['serving_size_id' => 3, 'food_id' => 3, 'calories' => 1],
             // ['serving_size_id' => 1, 'food_id' => 3, 'calories' => 41],
             // ['serving_size_id' => 4, 'food_id' => 3, 'calories' => 649],
