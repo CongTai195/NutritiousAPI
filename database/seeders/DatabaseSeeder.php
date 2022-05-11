@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
         $this->call(UserSeeder::class);
-        //$this->call(FoodSeeder::class);
-        //$this->call(ServingSizeSeeder::class);
-        //$this->call(ServingSizeFoodSeeder::class);
+        $this->call(FoodSeeder::class);
+        $this->call(ServingSizeSeeder::class);
+        $this->call(ServingSizeFoodSeeder::class);
     }
 }
 
@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            //['name' => 'Brad', 'email' => 'braddinh@gmail.com', 'password' => Hash::make('123')],
+            ['name' => 'Brad', 'email' => 'braddinh@gmail.com', 'password' => Hash::make('123')],
             ['name' => 'Cody', 'email' => 'codyle@gmail.com', 'password' => Hash::make('123')],
             ['name' => 'Gage', 'email' => 'gagepham@gmail.com', 'password' => Hash::make('123')],
         ]);

@@ -30,6 +30,7 @@ class DiaryDetailFoodResource extends JsonResource
         $protein = $serving_size->protein * $this->quantity;
 
         return [
+            'id' => $this->id,
             'name' => $food_name,
             'detail' => $food_detail,
             'serving_size' => $serving_size_name,

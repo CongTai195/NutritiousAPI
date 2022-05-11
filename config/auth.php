@@ -47,11 +47,11 @@ return [
             'hash' => false,
         ],
 
-        'api-admin' => [
-            'driver' => 'jwt',
-            'provider' => 'admins',
-            'hash' => false,
-        ]
+        // 'api-admin' => [
+        //     'driver' => 'jwt',
+        //     'provider' => 'admins',
+        //     'hash' => false,
+        // ]
     ],
 
     /*
