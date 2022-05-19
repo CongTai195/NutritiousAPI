@@ -22,9 +22,16 @@ class AuthenticationController extends Controller
         return ResponseHelper::send(['token' => $token, 'info' => auth('api')->user()]);
     }
 
+    public function getUser(): JsonResponse
+    {
+        return ResponseHelper::send(['info' => auth('api')->user()]);
+    }
+
+
+
     public function logout(): JsonResponse
     {
-        auth()->logout();
+        auth('api')->logout();
         return ResponseHelper::send([]);
     }
 }

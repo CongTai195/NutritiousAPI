@@ -17,13 +17,14 @@ class FoodResource extends JsonResource
     {
 
         $nutrition_fact = ServingSizeFoodResource
-                                                ::collection(
-                                                    Serving_size_food
-                                                                    ::all()
-                                                                    ->where('food_id',  $this->id)
-                                                                );
+            ::collection(
+                Serving_size_food
+                    ::all()
+                    ->where('food_id',  $this->id)
+            );
         return [
             'id' => $this->id,
+            'imageURL' => $this->imageURL,
             'name' => $this->name,
             'detail' => $this->detail,
             'fromCarbs' => $this->fromCarbs,

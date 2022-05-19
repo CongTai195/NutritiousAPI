@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('food', function (Blueprint $table) {
+        Schema::create('diary_exercise_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 255);
-            $table->string('detail', 255);
-            $table->string('imageURL', 255);
-            $table->float('fromCarbs');
-            $table->float('fromFat');
-            $table->float('fromProtein');
+            $table->bigInteger('diary_id')->unsigned();
+            $table->bigInteger('exercise_id')->unsigned();
+            $table->bigInteger('duration')->unsigned();
+            $table->foreign('diary_id')->references('id')->on('diaries');
+            $table->foreign('exercise_id')->references('id')->on('exercises');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food');
+        Schema::dropIfExists('diary_exercise_details');
     }
 };

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Exercise;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FoodSeeder::class);
         $this->call(ServingSizeSeeder::class);
         $this->call(ServingSizeFoodSeeder::class);
+        $this->call(ExerciseSeeder::class);
     }
 }
 
@@ -41,10 +43,33 @@ class FoodSeeder extends Seeder
     public function run()
     {
         DB::table('food')->insert([
-            ['name' => 'Beef', 'detail' => '93% lean beef', 'fromCarbs' => 0, 'fromFat' => 44, 'fromProtein' => 56],
-            ['name' => 'Chicken', 'detail' => 'Grilled chicken', 'fromCarbs' => 4, 'fromFat' => 16, 'fromProtein' => 80],
-            ['name' => 'Egg', 'detail' => 'Egg', 'fromCarbs' => 2, 'fromFat' => 62, 'fromProtein' => 36],
-            ['name' => 'Brocolini', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
+            ['name' => 'Beef', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Beef_co7xzu.jpg', 'detail' => '93% lean beef', 'fromCarbs' => 0, 'fromFat' => 44, 'fromProtein' => 56],
+            ['name' => 'Chicken', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Chicken_eshhtk.jpg', 'detail' => 'Grilled chicken', 'fromCarbs' => 4, 'fromFat' => 16, 'fromProtein' => 80],
+            ['name' => 'Egg', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Egg_rpfkcb.jpg', 'detail' => 'Egg', 'fromCarbs' => 2, 'fromFat' => 62, 'fromProtein' => 36],
+            ['name' => 'Brocolini', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Broccolini_jgr6cc.jpg', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
+        ]);
+    }
+}
+
+class ExerciseSeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('exercises')->insert([
+            ['name' => 'Running (jogging), 5.6 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652950598/Running_cv0c5i.jpg', 'calories' => 14.6],
+            ['name' => 'Running (jogging), 5.3 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652950598/Running_cv0c5i.jpg', 'calories' => 15.3],
+            ['name' => 'Running (jogging), 5 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 16.6],
+            ['name' => 'Running (jogging), 4.6 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 18],
+            ['name' => 'Running (jogging), 4.3 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 18.6],
+            ['name' => 'Running (jogging), 4.1 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 20],
+            ['name' => 'Running (jogging), 3.7 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 21.3],
+            ['name' => 'Running (jogging), 3.4 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 24],
+            ['name' => 'Running (jogging), 7.5 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 10.6],
+            ['name' => 'Running (jogging), 7.2 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 12],
+            ['name' => 'Running (jogging), 6.2 min per km', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 13.3],
+            ['name' => 'Running (jogging), in place', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949669/Running_cv0c5i.jpg', 'calories' => 10.6],
+            ['name' => 'Running (jogging), up stairs', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652951499/RunningUpstairs_pqz2i6.jpg', 'calories' => 20],
+            ['name' => 'Bicycling, <16 kph leisure (cycling, biking, bike riding)', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652950779/Biking_kcbfcr.jpg', 'calories' => 53.3],
         ]);
     }
 }
