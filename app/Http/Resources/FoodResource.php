@@ -22,6 +22,7 @@ class FoodResource extends JsonResource
                     ::all()
                     ->where('food_id',  $this->id)
             );
+
         return [
             'id' => $this->id,
             'imageURL' => $this->imageURL,

@@ -25,7 +25,8 @@ class DiaryDetailExerciseResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $exercise->name,
-            'calories' => $exercise->calories * $this->duration,
+            "imageURL" => $exercise->imageURL,
+            'calories' => round($exercise->calories * $this->duration),
             'duration' => $this->duration,
         ];
     }

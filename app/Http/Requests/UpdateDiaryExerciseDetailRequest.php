@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\ValidationException;
 
-class UpdateDiaryFoodDetailRequest extends FormRequest
+class UpdateDiaryExerciseDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,8 +31,7 @@ class UpdateDiaryFoodDetailRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity' => 'required',
-            'serving_size_food_id' => 'required',
+            'duration' => 'required',
         ];
     }
 

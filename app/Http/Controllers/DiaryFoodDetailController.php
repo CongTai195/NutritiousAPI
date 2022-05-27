@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateDiaryFoodDetailRequest;
 use App\Models\Diary;
 use App\Helpers\HttpCode;
 use App\Helpers\Status;
+use App\Http\Resources\DiaryDetailFoodResource;
 
 class DiaryFoodDetailController extends Controller
 {
@@ -31,11 +32,28 @@ class DiaryFoodDetailController extends Controller
     public function store(StoreDiaryFoodDetailRequest $request)
     {
         $diary_id = $request->diary_id;
+        $meal = $request->meal;
+        $serving_size_food_id = $request->serving_size_food_id;
         $user = Diary::where('id', $diary_id)->first()->user_id;
-        if ($user == auth('api')->user()->id) {
-            $food = DiaryFoodDetail::create($request->all());
 
-            return ResponseHelper::send($food);
+        $diary_food_detail = DiaryFoodDetail::where([["diary_id", $diary_id], ["meal", $meal], ["serving_size_food_id", $serving_size_food_id]])->first();
+
+        if ($user == auth('api')->user()->id) {
+            if ($diary_food_detail) {
+                $update_request = [
+                    "diary_id" => $diary_id,
+                    "serving_size_food_id" => $serving_size_food_id,
+                    "quantity" => $diary_food_detail->quantity + $request->quantity,
+                    "meal" =>  $diary_food_detail->meal
+                ];
+                $diary_food_detail->update($update_request);
+
+                return ResponseHelper::send();
+            } else {
+                $food = DiaryFoodDetail::create($request->all());
+
+                return ResponseHelper::send($food);
+            }
         } else {
             return ResponseHelper::send(
                 [],
@@ -66,7 +84,20 @@ class DiaryFoodDetailController extends Controller
      */
     public function update(UpdateDiaryFoodDetailRequest $request, DiaryFoodDetail $diaryFoodDetail)
     {
-        //
+        $diary_id = $diaryFoodDetail->diary_id;
+        $user = Diary::where('id', $diary_id)->first()->user_id;
+        if ($user == auth('api')->user()->id) {
+            $diaryFoodDetail->update($request->all());
+
+            return ResponseHelper::send();
+        } else {
+            return ResponseHelper::send(
+                [],
+                Status::NG,
+                HttpCode::FORBIDDEN,
+                ['jwt_middleware_error' => "You are not allowed to delete this."]
+            );
+        }
     }
 
     /**

@@ -88,9 +88,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     //ADD FOOD ROUTE
     Route::post('/diary/food', [DiaryFoodDetailController::class, 'store']);
     Route::delete('/diary/food/{diaryFoodDetail}', [DiaryFoodDetailController::class, 'destroy']);
+    Route::put('/diary/food/{diaryFoodDetail}', [DiaryFoodDetailController::class, 'update']);
     //ADD EXERCISE ROUTE
     Route::post('/diary/exercise', [DiaryExerciseDetailController::class, 'store']);
     Route::delete('/diary/exercise/{diaryExerciseDetail}', [DiaryExerciseDetailController::class, 'destroy']);
+    Route::put('/diary/exercise/{diaryExerciseDetail}', [DiaryExerciseDetailController::class, 'update']);
 });
 
 //Route::delete('/diary/food/{diaryFoodDetail}', [DiaryFoodDetailController::class, 'destroy']);
