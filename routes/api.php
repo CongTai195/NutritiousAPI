@@ -6,6 +6,7 @@ use App\Http\Controllers\DiaryExerciseDetailController;
 use App\Http\Controllers\DiaryFoodDetailController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\UserController;
 use App\Models\DiaryExerciseDetail;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
@@ -26,33 +27,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::group(['prefix' => 'food'], function () {
-//     Route::get('/', [FoodController::class, 'index']);
-//     Route::get('/{food}', [FoodController::class, 'show']);
-//     //Route::get('/search', [FoodController::class, 'search']);
-// });
-
-// Route::get('/search', [FoodController::class, 'search']);
-
-//Route::get('/food/search/{name}', [FoodController::class, 'search']);
 
 //AUTHENTICATION ROUTE
 Route::post('/login', [AuthenticationController::class, 'login']);
-
-
-
-
-//Route::get('/exercise/search', [ExerciseController::class, 'search']);
-//Route::get('/logout', [AuthenticationController::class, 'logout']);
-
-// //DIARY ROUTE
-// Route::post('/diary', [DiaryController::class, 'store']);
-// Route::get('/diary', [DiaryController::class, 'index']);
-// Route::get('/diary/detail', [DiaryController::class, 'show']);
-// //Route::get('/diary/{diary}', [DiaryController::class, 'show']);
-
-// //ADD FOOD ROUTE
-// Route::post('/diary/food', [DiaryFoodDetailController::class, 'store']);
+Route::post('/register', [UserController::class, 'register']);
 
 Route::group(['middleware' => 'auth:api'], function () {
     //FOOD ROUTE
@@ -68,14 +46,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/search/search', [ExerciseController::class, 'search']);
     });
 
-    // Route::group(['prefix' => 'exercise'], function () {
-    //     Route::get('/', [ExerciseController::class, 'index']);
-    //     Route::get('/{exercise}', [ExerciseController::class, 'show']);
-    //     //Route::get('/search', [FoodController::class, 'search']);
-    // });
-
     Route::get('/food/search', [FoodController::class, 'search']);
-    //Route::get('/exercise/search', [ExerciseController::class, 'search']);
     //AUTHENTICATION ROUTE
     Route::get('/getUser', [AuthenticationController::class, 'getUser']);
     Route::get('/logout', [AuthenticationController::class, 'logout']);
@@ -83,7 +54,6 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/diary', [DiaryController::class, 'store']);
     Route::get('/diary', [DiaryController::class, 'index']);
     Route::get('/diary/detail', [DiaryController::class, 'show']);
-    //Route::get('/diary/{diary}', [DiaryController::class, 'show']);
 
     //ADD FOOD ROUTE
     Route::post('/diary/food', [DiaryFoodDetailController::class, 'store']);
@@ -94,5 +64,3 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::delete('/diary/exercise/{diaryExerciseDetail}', [DiaryExerciseDetailController::class, 'destroy']);
     Route::put('/diary/exercise/{diaryExerciseDetail}', [DiaryExerciseDetailController::class, 'update']);
 });
-
-//Route::delete('/diary/food/{diaryFoodDetail}', [DiaryFoodDetailController::class, 'destroy']);

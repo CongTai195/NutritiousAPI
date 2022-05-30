@@ -17,8 +17,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->tinyInteger('gender');
+            $table->integer('height');
+            $table->integer('starting_weight');
+            $table->integer('goal_weight');
+            $table->string('weekly_goal');
+            $table->string('activity_level');
             //$table->rememberToken();
             $table->timestamps();
         });
