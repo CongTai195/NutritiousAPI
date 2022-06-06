@@ -10,6 +10,7 @@ use App\Models\Diary;
 use App\Helpers\HttpCode;
 use App\Helpers\Status;
 use App\Models\DiaryExerciseDetail;
+use App\Models\Process;
 
 class DiaryExerciseDetailController extends Controller
 {
@@ -34,7 +35,8 @@ class DiaryExerciseDetailController extends Controller
         $diary_id = $request->diary_id;
         $exercise_id = $request->exercise_id;
         $diary_exercise_detail = DiaryExerciseDetail::where([["diary_id", $diary_id], ['exercise_id', $exercise_id]])->first();
-        $user = Diary::where('id', $diary_id)->first()->user_id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
         if ($user == auth('api')->user()->id) {
             if ($diary_exercise_detail) {
                 $update_request = [
@@ -70,7 +72,8 @@ class DiaryExerciseDetailController extends Controller
     public function update(UpdateDiaryExerciseDetailRequest $request, DiaryExerciseDetail $diaryExerciseDetail)
     {
         $diary_id = $diaryExerciseDetail->diary_id;
-        $user = Diary::where('id', $diary_id)->first()->user_id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
         if ($user == auth('api')->user()->id) {
             $diaryExerciseDetail->update($request->all());
 
@@ -95,7 +98,8 @@ class DiaryExerciseDetailController extends Controller
     {
 
         $diary_id = $diaryExerciseDetail->diary_id;
-        $user = Diary::where('id', $diary_id)->first()->user_id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
         if ($user == auth('api')->user()->id) {
             $diaryExerciseDetail->delete();
 

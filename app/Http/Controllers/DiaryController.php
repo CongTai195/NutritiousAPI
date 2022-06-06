@@ -9,6 +9,7 @@ use App\Models\Diary;
 use App\Http\Requests\StoreDiaryRequest;
 use App\Http\Requests\UpdateDiaryRequest;
 use App\Http\Resources\DiaryResource;
+use App\Models\Process;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class DiaryController extends Controller
@@ -24,9 +25,14 @@ class DiaryController extends Controller
     {
         $date = $request->get('date');
         $user_id = auth('api')->user()->id;
-        $array = ['date' => $date, 'user_id' => $user_id];
+        $process_id = Process::all()->where('user_id', $user_id)->last()->id;
+        $is_enough = $request->get('is_enough');
+        $array = [
+            'date' => $date,
+            'process_id' => $process_id,
+            'is_enough' => $is_enough,
+        ];
         $diary = Diary::create($array);
-        //dd(auth('api')->user()->email);
 
         return ResponseHelper::send(new DiaryResource($diary));
     }
@@ -40,7 +46,9 @@ class DiaryController extends Controller
     public function show(StoreDiaryRequest $request)
     {
         $date = $request['date'];
-        $diary = Diary::where([['user_id', auth('api')->user()->id], ['date', $date]])->first();
+        $user_id = auth('api')->user()->id;
+        $process_id = Process::all()->where('user_id', $user_id)->last()->id;
+        $diary = Diary::where([['process_id', $process_id], ['date', $date]])->first();
         if (isset($diary)) {
             return ResponseHelper::send(new DiaryResource($diary));
         }

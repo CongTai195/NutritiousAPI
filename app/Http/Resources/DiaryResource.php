@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\DiaryExerciseDetail;
 use App\Models\DiaryFoodDetail;
+use App\Models\Process;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DiaryResource extends JsonResource
@@ -31,10 +32,13 @@ class DiaryResource extends JsonResource
                     ->where('diary_id',  $this->id)
             );
 
+        $process = Process::where('id', $this->process_id)->first();
+
 
         return [
             'id' => $this->id,
             'date' => $this->date,
+            'process' => $process,
             'food' =>  $food,
             'exercise' => $exercise
         ];

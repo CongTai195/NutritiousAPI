@@ -10,6 +10,7 @@ use App\Models\Diary;
 use App\Helpers\HttpCode;
 use App\Helpers\Status;
 use App\Http\Resources\DiaryDetailFoodResource;
+use App\Models\Process;
 
 class DiaryFoodDetailController extends Controller
 {
@@ -34,7 +35,8 @@ class DiaryFoodDetailController extends Controller
         $diary_id = $request->diary_id;
         $meal = $request->meal;
         $serving_size_food_id = $request->serving_size_food_id;
-        $user = Diary::where('id', $diary_id)->first()->user_id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
 
         $diary_food_detail = DiaryFoodDetail::where([["diary_id", $diary_id], ["meal", $meal], ["serving_size_food_id", $serving_size_food_id]])->first();
 
@@ -85,7 +87,8 @@ class DiaryFoodDetailController extends Controller
     public function update(UpdateDiaryFoodDetailRequest $request, DiaryFoodDetail $diaryFoodDetail)
     {
         $diary_id = $diaryFoodDetail->diary_id;
-        $user = Diary::where('id', $diary_id)->first()->user_id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
         if ($user == auth('api')->user()->id) {
             $diaryFoodDetail->update($request->all());
 
@@ -110,7 +113,8 @@ class DiaryFoodDetailController extends Controller
     {
 
         $diary_id = $diaryFoodDetail->diary_id;
-        $user = Diary::where('id', $diary_id)->first()->user_id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
         if ($user == auth('api')->user()->id) {
             $diaryFoodDetail->delete();
 

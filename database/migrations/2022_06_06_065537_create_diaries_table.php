@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('diaries', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
+            //$table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('process_id')->unsigned();
             $table->string('date');
-            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('process_id')->references('id')->on('processes');
+            $table->integer('weight_log')->nullable();
+            $table->integer('heart_rate_log')->nullable();
+            $table->integer('blood_pressure_log')->nullable();
+            $table->tinyInteger('is_enough');
             $table->timestamps();
         });
     }
