@@ -98,7 +98,7 @@ class DiaryFoodDetailController extends Controller
                 [],
                 Status::NG,
                 HttpCode::FORBIDDEN,
-                ['jwt_middleware_error' => "You are not allowed to delete this."]
+                ['jwt_middleware_error' => "You are not allowed to update this."]
             );
         }
     }
@@ -124,7 +124,7 @@ class DiaryFoodDetailController extends Controller
                 [],
                 Status::NG,
                 HttpCode::FORBIDDEN,
-                ['jwt_middleware_error' => "You are not allowed to delete this."]
+                ['jwt_middleware_error' => "You are not allowed to update this."]
             );
         }
     }

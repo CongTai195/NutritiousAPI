@@ -37,6 +37,25 @@ class DiaryController extends Controller
         return ResponseHelper::send(new DiaryResource($diary));
     }
 
+    public function update(UpdateDiaryRequest $request, Diary $diary)
+    {
+        $diary_id = $diary->id;
+        $process_id = Diary::where('id', $diary_id)->first()->process_id;
+        $user = Process::where('id', $process_id)->first()->user_id;
+        if ($user == auth('api')->user()->id) {
+            $diary->update($request->all());
+
+            return ResponseHelper::send();
+        } else {
+            return ResponseHelper::send(
+                [],
+                Status::NG,
+                HttpCode::FORBIDDEN,
+                ['jwt_middleware_error' => "You are not allowed to update this."]
+            );
+        }
+    }
+
     /**
      * Display the specified resource.
      *

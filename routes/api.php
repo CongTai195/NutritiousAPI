@@ -54,6 +54,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/diary', [DiaryController::class, 'store']);
     Route::get('/diary', [DiaryController::class, 'index']);
     Route::get('/diary/detail', [DiaryController::class, 'show']);
+    Route::put('/diary/{diary}', [DiaryController::class, 'update']);
 
     //ADD FOOD ROUTE
     Route::post('/diary/food', [DiaryFoodDetailController::class, 'store']);
