@@ -10,10 +10,27 @@ use App\Http\Requests\StoreDiaryRequest;
 use App\Http\Requests\UpdateDiaryRequest;
 use App\Http\Resources\DiaryResource;
 use App\Models\Process;
+use ErrorException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class DiaryController extends Controller
 {
+
+    public function index()
+    {
+        $user_id = auth('api')->user()->id;
+
+        $process_id = Process::where('user_id', $user_id)->get("id");
+        $result = [];
+        $subset = $process_id->map->only(['id'])->toArray();
+        //dd(($subset[0]['id']));
+        foreach ($subset as $process) {
+            $diary = Diary::all()->where('process_id', $process['id']);
+            array_push($result, $diary);
+        }
+        //dd($fields);
+        return ResponseHelper::send($result);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -25,7 +42,8 @@ class DiaryController extends Controller
     {
         $date = $request->get('date');
         $user_id = auth('api')->user()->id;
-        $process_id = Process::all()->where('user_id', $user_id)->last()->id;
+        $process = Process::where('user_id', $user_id)->whereDate('created_at', '<=', $date)->latest('created_at')->first();
+        $process_id = $process->id;
         $is_enough = $request->get('is_enough');
         $array = [
             'date' => $date,
@@ -66,13 +84,27 @@ class DiaryController extends Controller
     {
         $date = $request['date'];
         $user_id = auth('api')->user()->id;
-        $process_id = Process::all()->where('user_id', $user_id)->last()->id;
-        $diary = Diary::where([['process_id', $process_id], ['date', $date]])->first();
-        if (isset($diary)) {
-            return ResponseHelper::send(new DiaryResource($diary));
+        $process = Process::where('user_id', $user_id)->whereDate('created_at', '<=', $date)->latest('created_at')->first();
+        if (isset($process)) {
+            $diary = Diary::where([['process_id', $process->id], ['date', $date]])->first();
+            if (isset($diary)) {
+                return ResponseHelper::send(new DiaryResource($diary));
+            }
+            throw new HttpResponseException(
+                ResponseHelper::send([], Status::NG, HttpCode::NOT_FOUND, ['error' => "Diary not existed"])
+            );
+        } else {
+            throw new HttpResponseException(
+                ResponseHelper::send([], Status::NG, HttpCode::NOT_FOUND, ['error' => "Your process is not started"])
+            );
         }
-        throw new HttpResponseException(
-            ResponseHelper::send([], Status::NG, HttpCode::UNPROCESSABLE_ENTITY, ["Diary not existed"])
-        );
+
+        // $diary = Diary::where([['process_id', $process_id], ['date', $date]])->first();
+        // if (isset($diary)) {
+        //     return ResponseHelper::send(new DiaryResource($diary));
+        // }
+        // throw new HttpResponseException(
+        //     ResponseHelper::send([], Status::NG, HttpCode::NOT_FOUND, ["Diary not existed"])
+        // );
     }
 }
