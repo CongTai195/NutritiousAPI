@@ -10,6 +10,8 @@ use App\Http\Resources\FoodResource;
 use Response;
 use App\Helpers\Status;
 use App\Helpers\HTTPCode;
+use App\Models\Serving_size;
+use App\Models\Serving_size_food;
 use Illuminate\Http\Request;
 
 class FoodController extends Controller
@@ -22,6 +24,7 @@ class FoodController extends Controller
     public function index()
     {
         return ResponseHelper::send(FoodResource::collection(Food::all()));
+        //return ResponseHelper::send(Serving_size_food::all());
     }
 
     /**

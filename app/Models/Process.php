@@ -13,6 +13,7 @@ class Process extends Model
         'user_id',
         'height',
         'starting_weight',
+        'current_weight',
         'goal_weight',
         'weekly_goal',
         'activity_level',
@@ -21,6 +22,15 @@ class Process extends Model
         'calories',
         'carbs',
         'fat',
-        'protein'
+        'protein',
+        'cholesterol',
+        'sodium',
+        'calcium',
+        'iron',
+        'potassium',
+        'vitamin_A',
+        'vitamin_C',
+        'vitamin_D',
+
     ];
 }

@@ -33,6 +33,7 @@ class UserController extends Controller
         $starting_weight = $request->starting_weight;
         $goal_weight = $request->goal_weight;
         $weekly_goal = $request->weekly_goal;
+        $potassium = $gender == 1 ? 3500 : 2500;
 
         if ($weekly_goal == "Lose 0,2 kilograms per week") {
             $calories_cut += 2000 / 9;
@@ -86,6 +87,7 @@ class UserController extends Controller
             'user_id' => auth('api')->user()->id,
             "height" => $height,
             "starting_weight" => $starting_weight,
+            "current_weight" => $starting_weight,
             "goal_weight" => $goal_weight,
             "weekly_goal" => $weekly_goal,
             "activity_level" => $activity_level,
@@ -94,7 +96,15 @@ class UserController extends Controller
             "calories" => $calories,
             'carbs' => 50,
             'protein' => 30,
-            'fat' => 20
+            'fat' => 20,
+            'cholesterol' => round($calories * 0.15),
+            'sodium' => 2300,
+            'potassium' => $potassium,
+            'vitamin_A' => 100,
+            'vitamin_C' => 100,
+            'vitamin_D' => 100,
+            'calcium' => 100,
+            'iron' => 100,
         ];
 
         Process::create($process_request);
