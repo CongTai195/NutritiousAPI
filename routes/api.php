@@ -50,6 +50,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     //AUTHENTICATION ROUTE
     Route::get('/getUser', [AuthenticationController::class, 'getUser']);
     Route::get('/logout', [AuthenticationController::class, 'logout']);
+    Route::put('updateProcess', [UserController::class, 'updateProcess']);
     //DIARY ROUTE
     Route::post('/diary', [DiaryController::class, 'store']);
     Route::get('/diary', [DiaryController::class, 'index']);

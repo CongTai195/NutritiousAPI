@@ -32,11 +32,35 @@ class DiaryController extends Controller
                 array_push($result, $sub);
             }
         }
-        $result = array_slice($result, -7);
         usort($result, function ($object1, $object2) {
             return $object1['date'] > $object2['date'];
         });
-        return ResponseHelper::send($result);
+        $result_week = array_slice($result, -7);
+
+        $result_month = array_slice($result, -31);
+
+        $temp_month = [];
+        array_push($temp_month, $result_month[0]);
+        for ($x = 1; $x < count($result_month) - 1; $x += round(count($result_month) / 5)) {
+            array_push($temp_month, $result_month[$x]);
+        }
+        array_push($temp_month, $result_month[count($result_month) - 1]);
+
+        $result_3_months = array_slice($result, -90);
+
+        $temp_3_months = [];
+        array_push($temp_3_months, $result_3_months[0]);
+        for ($x = 1; $x < count($result_3_months) - 1; $x += round(count($result_3_months) / 5)) {
+            array_push($temp_3_months, $result_3_months[$x]);
+        }
+        array_push($temp_3_months, $result_3_months[count($result_3_months) - 1]);
+
+        $final_result = [];
+        array_push($final_result, $result_week);
+        array_push($final_result, $temp_month);
+        array_push($final_result, $temp_3_months);
+
+        return ResponseHelper::send($final_result);
     }
 
     /**
@@ -65,6 +89,8 @@ class DiaryController extends Controller
             'process_id' => $process_id,
             'is_enough' => $is_enough,
             'weight_log' => $current_weight,
+            'heart_rate_log' => $request->get('heart_rate_log'),
+            'blood_pressure_log' => $request->get('blood_pressure_log')
         ];
         $diary = Diary::create($array);
 
@@ -86,9 +112,6 @@ class DiaryController extends Controller
                 DB::table('processes')->where('id', $process_id)->update(array(
                     'current_weight' => $requested_current_weight,
                 ));
-                // $process::update([
-                //     "current_weight" => $requested_current_weight
-                // ]);
             }
             return ResponseHelper::send();
         } else {

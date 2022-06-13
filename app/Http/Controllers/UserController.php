@@ -11,9 +11,12 @@ use Response;
 use App\Helpers\Status;
 use App\Helpers\HTTPCode;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UpdateUserRequest;
+use App\Models\Diary;
 use App\Models\Process;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -56,8 +59,6 @@ class UserController extends Controller
         $BMR = $gender == 1 ? round(10 * $starting_weight + 6.25 * $height - 5 * $age + 5) : round(10 * $starting_weight + 6.25 * $height - 5 * $age - 161);
         $TDEE = round($BMR * $activity_level_rate);
         $calories = round($TDEE - $calories_cut);
-
-        //dd($BMR);
 
         $register_request = [
             "email" => $request->email,
@@ -110,5 +111,13 @@ class UserController extends Controller
         Process::create($process_request);
 
         return ResponseHelper::send(['token' => $token, 'info' => new UserResource(auth('api')->user())]);
+    }
+
+    public function updateProcess(UpdateUserRequest $request)
+    {
+        $user_id = auth('api')->user()->id;
+        $process_id = Process::all()->where('user_id', $user_id)->last()->id;
+        DB::table('processes')->where('id', $process_id)->update($request->all());
+        return ResponseHelper::send();
     }
 }
