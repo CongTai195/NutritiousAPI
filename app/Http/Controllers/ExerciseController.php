@@ -96,7 +96,7 @@ class ExerciseController extends Controller
         $exercise = ExerciseResource::collection(Exercise::where([
             ['name', 'LIKE', '%' . $name . '%'],
             ['user_id', $user->id]
-        ])->get());
+        ])->orderBy('id', 'desc')->get());
         return ResponseHelper::send($exercise);
     }
 }

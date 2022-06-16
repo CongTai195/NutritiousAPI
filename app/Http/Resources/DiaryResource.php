@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use App\Models\DiaryExerciseDetail;
 use App\Models\DiaryFoodDetail;
+use App\Models\DiaryWaterDetail;
 use App\Models\Process;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -33,6 +34,7 @@ class DiaryResource extends JsonResource
             );
 
         $process = Process::where('id', $this->process_id)->first();
+        $water = DiaryWaterDetail::where('diary_id', $this->id)->first();
 
 
         return [
@@ -40,7 +42,8 @@ class DiaryResource extends JsonResource
             'date' => $this->date,
             'process' => $process,
             'food' =>  $food,
-            'exercise' => $exercise
+            'exercise' => $exercise,
+            'water' => $water->amount
         ];
     }
 }

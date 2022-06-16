@@ -4,10 +4,12 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\DiaryController;
 use App\Http\Controllers\DiaryExerciseDetailController;
 use App\Http\Controllers\DiaryFoodDetailController;
+use App\Http\Controllers\DiaryWaterDetailController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\UserController;
 use App\Models\DiaryExerciseDetail;
+use App\Models\DiaryWaterDetail;
 use App\Models\Exercise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +70,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/diary', [DiaryController::class, 'index']);
     Route::get('/diary/detail', [DiaryController::class, 'show']);
     Route::put('/diary/{diary}', [DiaryController::class, 'update']);
+    Route::put('/water', [DiaryWaterDetailController::class, 'update']);
+    Route::post('/water', [DiaryWaterDetailController::class, 'add']);
 
     //ADD FOOD ROUTE
     Route::post('/diary/food', [DiaryFoodDetailController::class, 'store']);

@@ -165,7 +165,7 @@ class FoodController extends Controller
         $food = FoodResource::collection(Food::where([
             ['name', 'LIKE', '%' . $name . '%'],
             ['user_id', $user->id]
-        ])->get());
+        ])->orderBy('id', 'desc')->get());
         return ResponseHelper::send($food);
     }
 }

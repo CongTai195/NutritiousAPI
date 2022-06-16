@@ -9,6 +9,7 @@ use App\Models\Diary;
 use App\Http\Requests\StoreDiaryRequest;
 use App\Http\Requests\UpdateDiaryRequest;
 use App\Http\Resources\DiaryResource;
+use App\Models\DiaryWaterDetail;
 use App\Models\Process;
 use App\Models\User;
 use Carbon\Carbon;
@@ -93,6 +94,11 @@ class DiaryController extends Controller
             'blood_pressure_log' => $request->get('blood_pressure_log')
         ];
         $diary = Diary::create($array);
+
+        DiaryWaterDetail::create([
+            'diary_id' => $diary->id,
+            'amount' => 0
+        ]);
 
         return ResponseHelper::send(new DiaryResource($diary));
     }

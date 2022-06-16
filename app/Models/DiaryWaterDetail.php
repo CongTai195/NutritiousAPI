@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class DiaryWaterDetail extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['diary_id', 'amount'];
 }
