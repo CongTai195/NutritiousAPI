@@ -9,10 +9,13 @@ class Exercise extends Model
 {
     use HasFactory;
 
+    public $table = "exercises";
+
     protected $fillable = [
         'id',
         'name',
         'calories',
-        'imageURL'
+        'imageURL',
+        'user_id'
     ];
 }

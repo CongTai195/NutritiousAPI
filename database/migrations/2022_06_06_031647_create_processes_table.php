@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->integer('height');
-            $table->integer('starting_weight');
+            $table->float('starting_weight');
             $table->float('current_weight');
             $table->integer('goal_weight');
             $table->string('weekly_goal');

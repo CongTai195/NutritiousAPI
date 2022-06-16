@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
         //$this->call(UserSeeder::class);
-        $this->call(FoodSeeder::class);
-        $this->call(ServingSizeSeeder::class);
-        $this->call(ServingSizeFoodSeeder::class);
-        $this->call(ExerciseSeeder::class);
+        // $this->call(FoodSeeder::class);
+        // $this->call(ServingSizeSeeder::class);
+        // $this->call(ServingSizeFoodSeeder::class);
+        // $this->call(ExerciseSeeder::class);
+        $this->call(DiarySeeder::class);
     }
 }
 
@@ -36,11 +37,116 @@ class UserSeeder extends Seeder
                 'email' => 'braddinh@gmail.com',
                 'password' => Hash::make('123456'),
                 'gender' => 1,
-                'height' => 176,
-                'starting_weight' => 90,
-                'goal_weight' => 80,
-                'weekly_goal' => 'Lose 0.5 kilograms per week',
-                'activity_level' => 'Not Very Active'
+                'age' => 22
+            ],
+        ]);
+    }
+}
+
+class DiarySeeder extends Seeder
+{
+    public function run()
+    {
+        DB::table('diaries')->insert([
+            [
+                'process_id' => 1,
+                'date' => '2022-06-06',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-07',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-08',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-09',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-10',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-11',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-12',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-13',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-14',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
+            ],
+            [
+                'process_id' => 1,
+                'date' => '2022-06-15',
+                'weight_log' => 89,
+                'heart_rate_log' => 78,
+                'blood_pressure_log' => 120,
+                'is_enough' => 0,
+                'created_at' => '2022-06-10 01:07:42',
+                'updated_at' => '2022-06-13 18:50:28'
             ],
         ]);
     }
@@ -54,7 +160,8 @@ class FoodSeeder extends Seeder
             ['name' => 'Beef', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Beef_co7xzu.jpg', 'detail' => '93% lean beef', 'fromCarbs' => 0, 'fromFat' => 44, 'fromProtein' => 56],
             ['name' => 'Chicken', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Chicken_eshhtk.jpg', 'detail' => 'Grilled chicken', 'fromCarbs' => 4, 'fromFat' => 16, 'fromProtein' => 80],
             ['name' => 'Egg', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Egg_rpfkcb.jpg', 'detail' => 'Egg', 'fromCarbs' => 2, 'fromFat' => 62, 'fromProtein' => 36],
-            ['name' => 'Brocolini', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Broccolini_jgr6cc.jpg', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
+            ['name' => 'Broccoli', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Broccolini_jgr6cc.jpg', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
+            ['name' => 'Broccoli', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Broccolini_jgr6cc.jpg', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
         ]);
     }
 }

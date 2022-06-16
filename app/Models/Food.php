@@ -16,6 +16,7 @@ class Food extends Model
         'fromCarbs',
         'fromProtein',
         'fromFat',
-        'imageURL'
+        'imageURL',
+        'user_id'
     ];
 }

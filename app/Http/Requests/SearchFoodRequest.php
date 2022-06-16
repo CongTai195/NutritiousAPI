@@ -11,7 +11,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\ValidationException;
 
-class StoreExerciseRequest extends FormRequest
+class SearchFoodRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,10 +31,7 @@ class StoreExerciseRequest extends FormRequest
     public function rules()
     {
         return [
-            'diary_id' => 'required',
-            'name' => 'required|unique:exercises',
-            'calories' => 'required',
-            'duration' => 'required'
+            // 'name' => 'required',
         ];
     }
 

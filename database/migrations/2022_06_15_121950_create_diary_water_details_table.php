@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('exercises', function (Blueprint $table) {
+        Schema::create('diary_water_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->string('name', 255);
-            $table->string('imageURL', 255)->nullable();
-            $table->float('calories');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('diary_id')->unsigned();
+            $table->bigInteger('amount');
+            $table->foreign('diary_id')->references('id')->on('diaries');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exercises');
+        Schema::dropIfExists('diary_water_details');
     }
 };

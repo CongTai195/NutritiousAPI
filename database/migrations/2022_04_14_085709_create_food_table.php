@@ -15,12 +15,14 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->string('name', 255);
             $table->string('detail', 255);
-            $table->string('imageURL', 255);
+            $table->string('imageURL', 255)->nullable();
             $table->float('fromCarbs');
             $table->float('fromFat');
             $table->float('fromProtein');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

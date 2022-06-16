@@ -32,6 +32,23 @@ class StoreFoodRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'detail' => 'required|unique:food',
+            'calories' => 'required',
+            'serving_size_name' => 'required',
+            'carbs' => 'required',
+            'fat' => 'required',
+            'protein' => 'required',
+            'cholesterol' => 'required',
+            'sodium' => 'required',
+            'calcium' => 'required',
+            'iron' => 'required',
+            'potassium' => 'required',
+            'vitamin_A' => 'required',
+            'vitamin_C' => 'required',
+            'vitamin_D' => 'required',
+            'diary_id' => 'required',
+            'quantity' => "required",
+            'meal' => "required"
         ];
     }
 

@@ -40,6 +40,18 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/search/search', [FoodController::class, 'search']);
     });
 
+    Route::group(['prefix' => 'myFood'], function () {
+        Route::get('/', [FoodController::class, 'indexMyFood']);
+        Route::get('/search', [FoodController::class, 'searchMyFood']);
+        Route::post('/', [FoodController::class, 'addFood']);
+    });
+
+    Route::group(['prefix' => 'myExercise'], function () {
+        Route::get('/', [ExerciseController::class, 'indexMyExercise']);
+        Route::get('/search', [ExerciseController::class, 'searchMyExercise']);
+        Route::post('/', [ExerciseController::class, 'addExercise']);
+    });
+
     Route::group(['prefix' => 'exercise'], function () {
         Route::get('/', [ExerciseController::class, 'index']);
         Route::get('/{exercise}', [ExerciseController::class, 'show']);

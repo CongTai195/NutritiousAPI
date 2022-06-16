@@ -10,6 +10,8 @@ class Serving_size_food extends Model
     use HasFactory;
 
     protected $fillable = [
+        'serving_size_id',
+        'food_id',
         'calories',
         'fat',
         'cholesterol',
