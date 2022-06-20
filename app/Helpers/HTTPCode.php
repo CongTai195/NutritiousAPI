@@ -2,7 +2,7 @@
 
 namespace App\Helpers;
 
-class HttpCode
+class HTTPCode
 {
     /**
      * 100 - Continue
