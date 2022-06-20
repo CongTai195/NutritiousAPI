@@ -19,11 +19,11 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\User::factory(10)->create();
         //$this->call(UserSeeder::class);
-        // $this->call(FoodSeeder::class);
-        // $this->call(ServingSizeSeeder::class);
-        // $this->call(ServingSizeFoodSeeder::class);
-        // $this->call(ExerciseSeeder::class);
-        $this->call(DiarySeeder::class);
+        $this->call(FoodSeeder::class);
+        $this->call(ServingSizeSeeder::class);
+        $this->call(ServingSizeFoodSeeder::class);
+        $this->call(ExerciseSeeder::class);
+        //$this->call(DiarySeeder::class);
     }
 }
 
