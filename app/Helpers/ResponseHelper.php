@@ -22,7 +22,7 @@ class ResponseHelper
     public static function send(
         $result = [],
         string $status = Status::OK,
-        int $statusCode = HTTPCode::OK,
+        int $statusCode = HttpCode::OK,
         array $errors = [],
         array $headers = []
     ): JsonResponse {

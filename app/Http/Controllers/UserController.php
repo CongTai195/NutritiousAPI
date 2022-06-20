@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateFoodRequest;
 use App\Http\Resources\UserResource;
 use Response;
 use App\Helpers\Status;
-use App\Helpers\HTTPCode;
+use App\Helpers\HttpCode;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Diary;
