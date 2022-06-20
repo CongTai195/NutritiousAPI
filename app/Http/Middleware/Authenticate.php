@@ -53,7 +53,7 @@ class Authenticate
                 return ResponseHelper::send(
                     [],
                     Status::NG,
-                    401,
+                    HttpCode::UNAUTHORIZED,
                     ['jwt_middleware_error' => $e->getMessage()]
                 );
             }
