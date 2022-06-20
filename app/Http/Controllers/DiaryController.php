@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\HTTPCode;
+use App\Helpers\HttpCode;
 use App\Helpers\ResponseHelper;
 use App\Helpers\Status;
 use App\Models\Diary;

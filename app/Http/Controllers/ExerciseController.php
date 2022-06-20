@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateFoodRequest;
 use App\Http\Resources\FoodResource;
 use Response;
 use App\Helpers\Status;
-use App\Helpers\HTTPCode;
+use App\Helpers\HttpCode;
 use App\Http\Requests\SearchFoodRequest;
 use App\Http\Resources\ExerciseResource;
 use App\Models\Diary;
