@@ -90,8 +90,8 @@ class DiaryController extends Controller
             'process_id' => $process_id,
             'is_enough' => $is_enough,
             'weight_log' => $current_weight,
-            'heart_rate_log' => $request->get('heart_rate_log'),
-            'blood_pressure_log' => $request->get('blood_pressure_log')
+            'heart_rate_log' => 75,
+            'blood_pressure_log' => 120
         ];
         $diary = Diary::create($array);
 

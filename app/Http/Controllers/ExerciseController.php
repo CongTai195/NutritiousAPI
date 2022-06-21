@@ -57,7 +57,8 @@ class ExerciseController extends Controller
         $exercise = Exercise::create([
             'user_id' => $user->id,
             'name' => $name,
-            'calories' => round($calories / $duration, 1)
+            'calories' => round($calories / $duration, 1),
+            "imageURL" => $request->imageURL
         ]);
 
         $diary_id = $request->diary_id;

@@ -67,6 +67,7 @@ class FoodController extends Controller
             "fromCarbs" => $from_carbs,
             "fromFat" => $from_fat,
             "fromProtein" => $from_protein,
+            "imageURL" => $request->imageURL
         ]);
 
         $serving_size = Serving_size::create([
