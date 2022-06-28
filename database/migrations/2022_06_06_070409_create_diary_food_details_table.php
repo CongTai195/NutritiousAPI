@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('diary_id')->unsigned();
             $table->bigInteger('serving_size_food_id')->unsigned();
-            $table->bigInteger('quantity')->unsigned();
+            $table->float('quantity')->unsigned();
             $table->string('meal', 255);
             $table->foreign('diary_id')->references('id')->on('diaries');
             $table->foreign('serving_size_food_id')->references('id')->on('serving_size_foods');
