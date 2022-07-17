@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         //\App\Models\User::factory(10)->create();
         //$this->call(UserSeeder::class);
         $this->call(FoodSeeder::class);
-        $this->call(ServingSizeSeeder::class);
-        $this->call(ServingSizeFoodSeeder::class);
-        $this->call(ExerciseSeeder::class);
+        //$this->call(ServingSizeSeeder::class);
+        //$this->call(ServingSizeFoodSeeder::class);
+        //$this->call(ExerciseSeeder::class);
         //$this->call(DiarySeeder::class);
     }
 }
@@ -157,36 +157,38 @@ class FoodSeeder extends Seeder
     public function run()
     {
         DB::table('food')->insert([
-            ['name' => 'Beef', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Beef_co7xzu.jpg', 'detail' => '93% lean beef', 'fromCarbs' => 0, 'fromFat' => 44, 'fromProtein' => 56],
-            ['name' => 'Chicken', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656142770/grill_chicken_nsngry.jpg', 'detail' => 'Grilled chicken', 'fromCarbs' => 4, 'fromFat' => 16, 'fromProtein' => 80],
-            ['name' => 'Egg', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Egg_rpfkcb.jpg', 'detail' => 'Egg', 'fromCarbs' => 2, 'fromFat' => 62, 'fromProtein' => 36],
-            ['name' => 'Broccoli', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Broccolini_jgr6cc.jpg', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
-            ['name' => 'Beef Sausage', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656140964/beef-sausage_k2jbqx.jpg', 'detail' => 'Beef sausage', 'fromCarbs' => 1, 'fromFat' => 77, 'fromProtein' => 22],
-            ['name' => 'Ground Beef Round', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656141444/Ground_Beef_Craft_Paper_03052017_apgim2.jpg', 'detail' => 'Beef', 'fromCarbs' => 0, 'fromFat' => 65, 'fromProtein' => 35],
-            ['name' => 'Roast Beef', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656142159/roast_beef_szrvqp.jpg', 'detail' => 'Roast Beef', 'fromCarbs' => 9, 'fromFat' => 39, 'fromProtein' => 52],
-            ['name' => 'Chicken Tenderloin', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656142975/chicken_tenderloin_brdua2.jpg', 'detail' => 'Chicken tenderloin', 'fromCarbs' => 0, 'fromFat' => 5, 'fromProtein' => 95],
-            ['name' => 'Chicken Drumstick', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656143283/chicken_thigh_cbdzql.jpg', 'detail' => 'Chicken drumstick', 'fromCarbs' => 0, 'fromFat' => 51, 'fromProtein' => 49],
-            ['name' => 'Chicken Wing', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656143984/clean-raw-chicken-wing-isolated-white-background_131238-863_dihkws.jpg', 'detail' => 'Chicken wing', 'fromCarbs' => 0, 'fromFat' => 62, 'fromProtein' => 38],
-            ['name' => 'Chicken Breast', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656144273/raw-chicken-breast-fillet-without-skin-arranged-board_527904-741_czptue.jpg', 'detail' => 'Chicken breast', 'fromCarbs' => 0, 'fromFat' => 8, 'fromProtein' => 92],
-            ['name' => 'Pork Tenderloin', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656144746/raw-pork-tenderloin-fillet-fresh_492434-164_seccbn.jpg', 'detail' => 'Pork tenderloin', 'fromCarbs' => 3, 'fromFat' => 19, 'fromProtein' => 78],
-            ['name' => 'Pork Chops', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656145206/istockphoto-953659100-1024x1024_yvckny.jpg', 'detail' => 'Pork chops', 'fromCarbs' => 3, 'fromFat' => 30, 'fromProtein' => 67],
-            ['name' => 'Salmon', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656312353/salmon_faewmu.jpg', 'detail' => 'Atlantic salmon', 'fromCarbs' => 1, 'fromFat' => 48, 'fromProtein' => 51],
-            ['name' => 'Salmon', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656312353/salmon_faewmu.jpg', 'detail' => 'Frozen salmon', 'fromCarbs' => 0, 'fromFat' => 23, 'fromProtein' => 77],
-            ['name' => 'Tuna in Water', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656313242/tuna_in_water_nev0hb.jpg', 'detail' => 'Tuna', 'fromCarbs' => 0, 'fromFat' => 9, 'fromProtein' => 91],
-            ['name' => 'Tuna Sashimi', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656313729/tuna_sashimi_ko6rdc.jpg', 'detail' => 'Tuna sashimi', 'fromCarbs' => 0, 'fromFat' => 8, 'fromProtein' => 92],
-            ['name' => 'Salmon Sashimi', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656314227/salmon_sashimi_iisl8m.jpg', 'detail' => 'Salmon sashimi', 'fromCarbs' => 0, 'fromFat' => 38, 'fromProtein' => 62],
-            ['name' => 'Beef Pho', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656314538/GoLive-Beef-Pho_v956w1.jpg', 'detail' => 'Pho', 'fromCarbs' => 50, 'fromFat' => 20, 'fromProtein' => 30],
-            ['name' => 'Potato', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656314831/potato_gmeckx.jpg', 'detail' => 'Pho', 'fromCarbs' => 88, 'fromFat' => 2, 'fromProtein' => 10],
-            ['name' => 'Sweet Potato', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656315356/sweet_potato_jmtdjj.jpg', 'detail' => 'Sweet potato', 'fromCarbs' => 61, 'fromFat' => 35, 'fromProtein' => 5],
-            ['name' => 'Sugar', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656315860/sugar_swioo4.jpg', 'detail' => 'Sugar', 'fromCarbs' => 99, 'fromFat' => 1, 'fromProtein' => 0],
-            ['name' => 'Rice', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656316508/1463518_iidzfj.jpg', 'detail' => 'Jasmine rice', 'fromCarbs' => 90, 'fromFat' => 3, 'fromProtein' => 7],
-            ['name' => 'Oil', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656316987/oil_xjytkp.jpg', 'detail' => 'Vegetable oil', 'fromCarbs' => 0, 'fromFat' => 100, 'fromProtein' => 0],
-            ['name' => 'Shrimp', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656317458/two-tail-shrimp-with-fresh-lemon-rosemary-white_2829-18154_ejrc4t.jpg', 'detail' => 'Shrimp', 'fromCarbs' => 5, 'fromFat' => 12, 'fromProtein' => 82],
-            ['name' => 'Oat', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656318296/oat_ziknqb.jpg', 'detail' => 'Oatmeal', 'fromCarbs' => 70, 'fromFat' => 17, 'fromProtein' => 13],
-            ['name' => 'Green Bell Pepper', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656318645/greenbellpepper_kd049y.jpg', 'detail' => 'chopped', 'fromCarbs' => 79, 'fromFat' => 7, 'fromProtein' => 15],
-            ['name' => 'Red Bell Pepper', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656318724/food-cook-spice-ingredients_k7gsfy.jpg', 'detail' => 'chopped', 'fromCarbs' => 78, 'fromFat' => 9, 'fromProtein' => 13],
-            ['name' => 'Vietnamese Ham Banh Mi', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656403903/banh-mi-cha-ca-nha-trang-600x400_q7dnjb.jpg', 'detail' => 'Banh mi', 'fromCarbs' => 47, 'fromFat' => 31, 'fromProtein' => 22],
-
+            // ['name' => 'Beef', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Beef_co7xzu.jpg', 'detail' => '93% lean beef', 'fromCarbs' => 0, 'fromFat' => 44, 'fromProtein' => 56],
+            // ['name' => 'Chicken', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656142770/grill_chicken_nsngry.jpg', 'detail' => 'Grilled chicken', 'fromCarbs' => 4, 'fromFat' => 16, 'fromProtein' => 80],
+            // ['name' => 'Egg', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Egg_rpfkcb.jpg', 'detail' => 'Egg', 'fromCarbs' => 2, 'fromFat' => 62, 'fromProtein' => 36],
+            // ['name' => 'Broccoli', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1652949668/Broccolini_jgr6cc.jpg', 'detail' => 'Generic', 'fromCarbs' => 64, 'fromFat' => 8, 'fromProtein' => 28],
+            // ['name' => 'Beef Sausage', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656140964/beef-sausage_k2jbqx.jpg', 'detail' => 'Beef sausage', 'fromCarbs' => 1, 'fromFat' => 77, 'fromProtein' => 22],
+            // ['name' => 'Ground Beef Round', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656141444/Ground_Beef_Craft_Paper_03052017_apgim2.jpg', 'detail' => 'Beef', 'fromCarbs' => 0, 'fromFat' => 65, 'fromProtein' => 35],
+            // ['name' => 'Roast Beef', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656142159/roast_beef_szrvqp.jpg', 'detail' => 'Roast Beef', 'fromCarbs' => 9, 'fromFat' => 39, 'fromProtein' => 52],
+            // ['name' => 'Chicken Tenderloin', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656142975/chicken_tenderloin_brdua2.jpg', 'detail' => 'Chicken tenderloin', 'fromCarbs' => 0, 'fromFat' => 5, 'fromProtein' => 95],
+            // ['name' => 'Chicken Drumstick', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656143283/chicken_thigh_cbdzql.jpg', 'detail' => 'Chicken drumstick', 'fromCarbs' => 0, 'fromFat' => 51, 'fromProtein' => 49],
+            // ['name' => 'Chicken Wing', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656143984/clean-raw-chicken-wing-isolated-white-background_131238-863_dihkws.jpg', 'detail' => 'Chicken wing', 'fromCarbs' => 0, 'fromFat' => 62, 'fromProtein' => 38],
+            // ['name' => 'Chicken Breast', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656144273/raw-chicken-breast-fillet-without-skin-arranged-board_527904-741_czptue.jpg', 'detail' => 'Chicken breast', 'fromCarbs' => 0, 'fromFat' => 8, 'fromProtein' => 92],
+            // ['name' => 'Pork Tenderloin', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656144746/raw-pork-tenderloin-fillet-fresh_492434-164_seccbn.jpg', 'detail' => 'Pork tenderloin', 'fromCarbs' => 3, 'fromFat' => 19, 'fromProtein' => 78],
+            // ['name' => 'Pork Chops', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656145206/istockphoto-953659100-1024x1024_yvckny.jpg', 'detail' => 'Pork chops', 'fromCarbs' => 3, 'fromFat' => 30, 'fromProtein' => 67],
+            // ['name' => 'Salmon', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656312353/salmon_faewmu.jpg', 'detail' => 'Atlantic salmon', 'fromCarbs' => 1, 'fromFat' => 48, 'fromProtein' => 51],
+            // ['name' => 'Salmon', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656312353/salmon_faewmu.jpg', 'detail' => 'Frozen salmon', 'fromCarbs' => 0, 'fromFat' => 23, 'fromProtein' => 77],
+            // ['name' => 'Tuna in Water', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656313242/tuna_in_water_nev0hb.jpg', 'detail' => 'Tuna', 'fromCarbs' => 0, 'fromFat' => 9, 'fromProtein' => 91],
+            // ['name' => 'Tuna Sashimi', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656313729/tuna_sashimi_ko6rdc.jpg', 'detail' => 'Tuna sashimi', 'fromCarbs' => 0, 'fromFat' => 8, 'fromProtein' => 92],
+            // ['name' => 'Salmon Sashimi', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656314227/salmon_sashimi_iisl8m.jpg', 'detail' => 'Salmon sashimi', 'fromCarbs' => 0, 'fromFat' => 38, 'fromProtein' => 62],
+            // ['name' => 'Beef Pho', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656314538/GoLive-Beef-Pho_v956w1.jpg', 'detail' => 'Pho', 'fromCarbs' => 50, 'fromFat' => 20, 'fromProtein' => 30],
+            // ['name' => 'Potato', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656314831/potato_gmeckx.jpg', 'detail' => 'Pho', 'fromCarbs' => 88, 'fromFat' => 2, 'fromProtein' => 10],
+            // ['name' => 'Sweet Potato', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656315356/sweet_potato_jmtdjj.jpg', 'detail' => 'Sweet potato', 'fromCarbs' => 61, 'fromFat' => 35, 'fromProtein' => 5],
+            // ['name' => 'Sugar', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656315860/sugar_swioo4.jpg', 'detail' => 'Sugar', 'fromCarbs' => 99, 'fromFat' => 1, 'fromProtein' => 0],
+            // ['name' => 'Rice', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656316508/1463518_iidzfj.jpg', 'detail' => 'Jasmine rice', 'fromCarbs' => 90, 'fromFat' => 3, 'fromProtein' => 7],
+            // ['name' => 'Oil', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656316987/oil_xjytkp.jpg', 'detail' => 'Vegetable oil', 'fromCarbs' => 0, 'fromFat' => 100, 'fromProtein' => 0],
+            // ['name' => 'Shrimp', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656317458/two-tail-shrimp-with-fresh-lemon-rosemary-white_2829-18154_ejrc4t.jpg', 'detail' => 'Shrimp', 'fromCarbs' => 5, 'fromFat' => 12, 'fromProtein' => 82],
+            // ['name' => 'Oat', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656318296/oat_ziknqb.jpg', 'detail' => 'Oatmeal', 'fromCarbs' => 70, 'fromFat' => 17, 'fromProtein' => 13],
+            // ['name' => 'Green Bell Pepper', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656318645/greenbellpepper_kd049y.jpg', 'detail' => 'chopped', 'fromCarbs' => 79, 'fromFat' => 7, 'fromProtein' => 15],
+            // ['name' => 'Red Bell Pepper', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656318724/food-cook-spice-ingredients_k7gsfy.jpg', 'detail' => 'chopped', 'fromCarbs' => 78, 'fromFat' => 9, 'fromProtein' => 13],
+            // ['name' => 'Vietnamese Ham Banh Mi', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1656403903/banh-mi-cha-ca-nha-trang-600x400_q7dnjb.jpg', 'detail' => 'Banh mi', 'fromCarbs' => 47, 'fromFat' => 31, 'fromProtein' => 22],
+            ['name' => 'Milk', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1658030899/milk_n9squz.jpg', 'detail' => 'Milk', 'fromCarbs' => 39, 'fromFat' => 33, 'fromProtein' => 29],
+            ['name' => 'Coffee', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1658031415/coffee_mzhxul.jpg', 'detail' => 'Black coffee', 'fromCarbs' => 0, 'fromFat' => 0, 'fromProtein' => 0],
+            ['name' => 'Vietnamese Coffee', 'imageURL' => 'https://res.cloudinary.com/dxtozrwr9/image/upload/v1658031679/vnese_coffee_debp03.jpg', 'detail' => 'Coffee with dense milk', 'fromCarbs' => 72, 'fromFat' => 28, 'fromProtein' => 0],
         ]);
     }
 }
