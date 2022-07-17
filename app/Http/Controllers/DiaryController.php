@@ -9,6 +9,7 @@ use App\Models\Diary;
 use App\Http\Requests\StoreDiaryRequest;
 use App\Http\Requests\UpdateDiaryRequest;
 use App\Http\Resources\DiaryResource;
+use App\Http\Resources\StatisticResource;
 use App\Models\DiaryWaterDetail;
 use App\Models\Process;
 use App\Models\User;
@@ -23,45 +24,49 @@ class DiaryController extends Controller
     public function index()
     {
         $user_id = auth('api')->user()->id;
-        $process_id = Process::where('user_id', $user_id)->get("id");
-        $result = array();
-        $subset = $process_id->toArray();
-        foreach ($subset as $process) {
-            $diary = Diary::where('process_id', $process['id'])->get(['id', 'date', 'weight_log', 'heart_rate_log', 'blood_pressure_log',]);
-            $sub_diary = $diary->toArray();
-            foreach ($sub_diary as $sub) {
-                array_push($result, $sub);
-            }
-        }
-        usort($result, function ($object1, $object2) {
-            return $object1['date'] > $object2['date'];
-        });
-        $result_week = array_slice($result, -7);
+        $process_id = Process::where('user_id', $user_id)->get("id")->first()->id;
+        $diary = StatisticResource::collection(Diary::all()->where('process_id', $process_id));
+        return ResponseHelper::send($diary);
 
-        $result_month = array_slice($result, -31);
+        //OLD_CODE:
+        // $result = array();
+        // $subset = $process_id->toArray();
+        // foreach ($subset as $process) {
+        //     $diary = Diary::where('process_id', $process['id'])->get(['id', 'date', 'weight_log', 'heart_rate_log', 'blood_pressure_log',]);
+        //     $sub_diary = $diary->toArray();
+        //     foreach ($sub_diary as $sub) {
+        //         array_push($result, $sub);
+        //     }
+        // }
+        // usort($result, function ($object1, $object2) {
+        //     return $object1['date'] > $object2['date'];
+        // });
+        // $result_week = array_slice($result, -7);
 
-        $temp_month = [];
-        array_push($temp_month, $result_month[0]);
-        for ($x = 1; $x < count($result_month) - 1; $x += round(count($result_month) / 5)) {
-            array_push($temp_month, $result_month[$x]);
-        }
-        array_push($temp_month, $result_month[count($result_month) - 1]);
+        // $result_month = array_slice($result, -31);
 
-        $result_3_months = array_slice($result, -90);
+        // $temp_month = [];
+        // array_push($temp_month, $result_month[0]);
+        // for ($x = 1; $x < count($result_month) - 1; $x += round(count($result_month) / 5)) {
+        //     array_push($temp_month, $result_month[$x]);
+        // }
+        // array_push($temp_month, $result_month[count($result_month) - 1]);
 
-        $temp_3_months = [];
-        array_push($temp_3_months, $result_3_months[0]);
-        for ($x = 1; $x < count($result_3_months) - 1; $x += round(count($result_3_months) / 5)) {
-            array_push($temp_3_months, $result_3_months[$x]);
-        }
-        array_push($temp_3_months, $result_3_months[count($result_3_months) - 1]);
+        // $result_3_months = array_slice($result, -90);
 
-        $final_result = [];
-        array_push($final_result, $result_week);
-        array_push($final_result, $temp_month);
-        array_push($final_result, $temp_3_months);
+        // $temp_3_months = [];
+        // array_push($temp_3_months, $result_3_months[0]);
+        // for ($x = 1; $x < count($result_3_months) - 1; $x += round(count($result_3_months) / 5)) {
+        //     array_push($temp_3_months, $result_3_months[$x]);
+        // }
+        // array_push($temp_3_months, $result_3_months[count($result_3_months) - 1]);
 
-        return ResponseHelper::send($final_result);
+        // $final_result = [];
+        // array_push($final_result, $result_week);
+        // array_push($final_result, $temp_month);
+        // array_push($final_result, $temp_3_months);
+
+        // return ResponseHelper::send($final_result);
     }
 
     /**
